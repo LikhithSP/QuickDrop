@@ -1,7 +1,6 @@
 "use client";
 import { supabase } from "@/lib/supabaseClient";
 import { useEffect, useState } from "react";
-import type { GetServerSidePropsContext } from "next";
 
 interface FileParams {
   file: string;
