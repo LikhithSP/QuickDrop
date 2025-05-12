@@ -4,10 +4,8 @@ import { supabase } from "@/lib/supabaseClient";
 import QRCode from "qrcode";
 import { FaCopy, FaWhatsapp } from "react-icons/fa";
 
-// Replace window.location.origin with Netlify site URL for deployment
-const SITE_ORIGIN = typeof window !== "undefined" && window.location.origin !== "http://localhost:3000"
-  ? window.location.origin
-  : "https://snapdropx.netlify.app";
+// Use window.location.origin for local development
+const SITE_ORIGIN = typeof window !== "undefined" ? window.location.origin : "";
 
 export default function SendTextPage() {
   const [text, setText] = useState("");
