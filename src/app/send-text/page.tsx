@@ -4,8 +4,10 @@ import { supabase } from "@/lib/supabaseClient";
 import QRCode from "qrcode";
 import { FaCopy, FaWhatsapp } from "react-icons/fa";
 
-// Use window.location.origin for local development
-const SITE_ORIGIN = typeof window !== "undefined" ? window.location.origin : "";
+// Use environment variable for production or window.location.origin for development
+const SITE_ORIGIN = 
+  process.env.NEXT_PUBLIC_SITE_URL || 
+  (typeof window !== "undefined" ? window.location.origin : "https://snapdropx.netlify.app");
 
 export default function SendTextPage() {
   const [text, setText] = useState("");
@@ -47,48 +49,50 @@ export default function SendTextPage() {
   };
 
   return (
-    <div className="max-w-lg mx-auto py-10">
-      <h1 className="text-2xl font-bold mb-4">Send Text</h1>
-      <textarea
-        className="w-full h-32 p-2 rounded border mb-2"
-        placeholder="Paste your notes, code, or any text here..."
-        value={text}
-        onChange={e => setText(e.target.value)}
-        maxLength={5000}
-      />
-      <input
-        className="w-full mb-2 p-2 rounded border"
-        placeholder="Optional nickname (e.g. rahul-notes)"
-        value={nickname}
-        onChange={e => setNickname(e.target.value.replace(/[^a-zA-Z0-9-_]/g, ""))}
-        maxLength={32}
-      />
-      <div className="mb-4">
-        <label className="mr-2">Expiry:</label>
-        <select value={expiry} onChange={e => setExpiry(e.target.value)} className="p-1 rounded border">
-          <option value="24h">24 hours</option>
-          <option value="7d">7 days</option>
-        </select>
-      </div>
-      {error && <div className="text-red-500 mb-2">{error}</div>}
-      <button
-        className="bg-green-600 hover:bg-green-700 text-white rounded-lg py-2 px-6 font-semibold shadow mb-4 w-full"
-        onClick={handleUpload}
-        disabled={uploading}
-      >
-        {uploading ? "Saving..." : "Save & Get Link"}
-      </button>
-      {link && (
-        <div className="mt-6 text-center">
-          <div className="mb-2">Share this link:</div>
-          <div className="flex items-center justify-center gap-2 mb-2">
-            <input className="border rounded p-1 w-60" value={SITE_ORIGIN + link} readOnly />
-            <button onClick={() => navigator.clipboard.writeText(SITE_ORIGIN + link)} className="p-2"><FaCopy /></button>
-            <a href={`https://wa.me/?text=${encodeURIComponent(SITE_ORIGIN + link)}`} target="_blank" rel="noopener noreferrer" className="p-2 text-green-600"><FaWhatsapp /></a>
-          </div>
-          {qr && <img src={qr} alt="QR Code" className="mx-auto mt-2 w-32 h-32" />}
+    <div className="container fade-in">
+      <div className="card max-w-xl mx-auto">
+        <h1 className="text-2xl font-extrabold mb-6 text-card-text text-center">Send Text</h1>
+        <textarea
+          className="w-full h-32 p-3 rounded-lg border border-input-border bg-input-bg text-input-text focus:border-primary outline-none transition mb-3 resize-none"
+          placeholder="Paste your notes, code, or any text here..."
+          value={text}
+          onChange={e => setText(e.target.value)}
+          maxLength={5000}
+        />
+        <input
+          className="w-full mb-3 p-3 rounded-lg border border-input-border bg-input-bg text-input-text focus:border-primary outline-none transition"
+          placeholder="Optional nickname (e.g. rahul-notes)"
+          value={nickname}
+          onChange={e => setNickname(e.target.value.replace(/[^a-zA-Z0-9-_]/g, ""))}
+          maxLength={32}
+        />
+        <div className="mb-4 flex items-center gap-2">
+          <label className="text-secondary">Expiry:</label>
+          <select value={expiry} onChange={e => setExpiry(e.target.value)} className="p-2 rounded-lg border border-input-border bg-input-bg text-input-text focus:border-primary outline-none transition">
+            <option value="24h">24 hours</option>
+            <option value="7d">7 days</option>
+          </select>
         </div>
-      )}
+        {error && <div className="text-red-500 mb-3 text-center">{error}</div>}
+        <button
+          className="w-full bg-button-bg hover:bg-button-hover text-button-text rounded-xl py-3 px-6 font-semibold shadow-md transition-all duration-200 mb-4 disabled:opacity-60"
+          onClick={handleUpload}
+          disabled={uploading}
+        >
+          {uploading ? "Saving..." : "Save & Get Link"}
+        </button>
+        {link && (
+          <div className="mt-8 text-center">
+            <div className="mb-2 text-secondary">Share this link:</div>
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <input className="border rounded-lg p-2 w-60 bg-input-bg text-input-text border-input-border" value={SITE_ORIGIN + link} readOnly />
+              <button onClick={() => navigator.clipboard.writeText(SITE_ORIGIN + link)} className="p-2 text-secondary hover:text-primary transition"><FaCopy /></button>
+              <a href={`https://wa.me/?text=${encodeURIComponent(SITE_ORIGIN + link)}`} target="_blank" rel="noopener noreferrer" className="p-2 text-green-600 hover:scale-110 transition"><FaWhatsapp /></a>
+            </div>
+            {qr && <img src={qr} alt="QR Code" className="mx-auto mt-2 w-32 h-32 rounded-lg shadow bg-white p-1" />}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

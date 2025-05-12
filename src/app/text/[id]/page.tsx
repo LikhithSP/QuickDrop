@@ -36,24 +36,26 @@ export default function TextReceivePage() {
     if (textId) fetchText();
   }, [textId]);
 
-  if (loading) return <div className="text-center py-20">Loading... 🎓</div>;
+  if (loading) return <div className="text-center py-20 text-foreground">Loading... 🎓</div>;
   if (expired) return <div className="text-center py-20 text-red-500">Text not found or expired.</div>;
 
   return (
-    <div className="max-w-lg mx-auto py-10 text-center">
-      <h1 className="text-2xl font-bold mb-4">Shared Text</h1>
-      <textarea
-        className="w-full h-40 p-2 rounded border mb-4"
-        value={text}
-        readOnly
-      />
-      <button
-        className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg py-2 px-6 font-semibold shadow mb-4"
-        onClick={() => navigator.clipboard.writeText(text)}
-      >
-        Copy Text
-      </button>
-      <div className="mt-6 text-xs text-gray-400">This text may expire soon. Shared in XYZ College.</div>
+    <div className="container fade-in">
+      <div className="card max-w-xl mx-auto">
+        <h1 className="text-2xl font-bold mb-6 text-card-text text-center">Shared Text</h1>
+        <textarea
+          className="w-full h-40 p-3 rounded-lg border border-input-border bg-input-bg text-input-text mb-6"
+          value={text}
+          readOnly
+        />
+        <button
+          className="w-full bg-button-bg hover:bg-button-hover text-button-text rounded-xl py-3 px-6 font-semibold shadow-md transition-all duration-200 mb-4"
+          onClick={() => navigator.clipboard.writeText(text)}
+        >
+          Copy Text
+        </button>
+        <div className="mt-6 text-xs text-secondary text-center">This text may expire soon. Save it now.</div>
+      </div>
     </div>
   );
 }

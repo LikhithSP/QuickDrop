@@ -27,24 +27,26 @@ export default function FileReceivePage({ params }: { params: { file: string } }
     fetchFile();
   }, [params.file]);
 
-  if (loading) return <div className="text-center py-20">Loading... 🎓</div>;
+  if (loading) return <div className="text-center py-20 text-foreground">Loading... 🎓</div>;
   if (expired) return <div className="text-center py-20 text-red-500">File not found or expired.</div>;
 
   return (
-    <div className="max-w-lg mx-auto py-10 text-center">
-      <h1 className="text-2xl font-bold mb-4">Download File</h1>
-      <div className="mb-4">
-        <div className="font-semibold">{fileInfo?.name}</div>
-        {/* File size/type could be shown if you store metadata */}
+    <div className="container fade-in">
+      <div className="card max-w-xl mx-auto">
+        <h1 className="text-2xl font-bold mb-6 text-card-text text-center">Download File</h1>
+        <div className="mb-6 text-center">
+          <div className="font-semibold text-card-text">{fileInfo?.name}</div>
+          {/* File size/type could be shown if you store metadata */}
+        </div>
+        <a
+          href={fileUrl}
+          download
+          className="w-full bg-button-bg hover:bg-button-hover text-button-text rounded-xl py-3 px-6 font-semibold shadow-md transition-all duration-200 mb-4 flex justify-center"
+        >
+          Download
+        </a>
+        <div className="mt-6 text-xs text-secondary text-center">This file may expire soon. Download it now.</div>
       </div>
-      <a
-        href={fileUrl}
-        download
-        className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg py-2 px-6 font-semibold shadow mb-4 inline-block"
-      >
-        Download
-      </a>
-      <div className="mt-6 text-xs text-gray-400">This file may expire soon. Shared in XYZ College.</div>
     </div>
   );
 }
