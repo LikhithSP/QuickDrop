@@ -48,7 +48,3 @@ export default function FileReceivePage({ params }: { params: { file: string } }
     </div>
   );
 }
-
-export async function generateStaticParams() {
-  return [];
-}
