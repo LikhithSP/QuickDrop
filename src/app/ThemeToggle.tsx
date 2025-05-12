@@ -21,7 +21,7 @@ const ThemeToggle = () => {
     const newMode = !isDarkMode;
     setIsDarkMode(newMode);
     
-    // Update  and save preference
+    // Update  and save 
     if (newMode) {
       document.documentElement.classList.add('dark');
       document.documentElement.classList.remove('light');
