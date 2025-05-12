@@ -2,8 +2,12 @@
 import { supabase } from "@/lib/supabaseClient";
 import { useEffect, useState } from "react";
 
-// For Next.js App Router, we use a simpler params structure
-export default function FileReceivePage({ params }: { params: { file: string } }) {
+// Define the page with the correct type for App Router
+type Props = {
+  params: { file: string }
+}
+
+export default function FileReceivePage({ params }: Props) {
   const [fileUrl, setFileUrl] = useState("");
   const [fileInfo, setFileInfo] = useState<{ name: string; size: number; type: string } | null>(null);
   const [expired, setExpired] = useState(false);
