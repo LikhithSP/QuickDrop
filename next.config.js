@@ -5,13 +5,13 @@ const { PHASE_PRODUCTION_BUILD } = require('next/constants');
 /**
  * @type {import('next').NextConfig}
  */
-module.exports = (phase, { defaultConfig }) => {
-  /**
+module.exports = (phase, { defaultConfig }) => {  /**
    * @type {import('next').NextConfig}
    */
   const nextConfig = {
     // Base config options from next.config.ts
-    output: 'export',
+    // Removing 'export' to enable API routes and dynamic routes
+    // We'll use Netlify's serverless functions instead
     distDir: 'out',
     images: {
       unoptimized: true,

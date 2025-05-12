@@ -15,10 +15,6 @@ const nextConfig: NextConfig = {
   env: {
     NEXT_PUBLIC_SITE_URL: 'https://snapdropx.netlify.app',
   },
-  // Explicitly specify which Next.js features to use
-  experimental: {
-    appDir: true,
-  },
   // Create service worker for offline capability
   poweredByHeader: false,
 };

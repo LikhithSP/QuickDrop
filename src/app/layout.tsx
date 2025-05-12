@@ -1,16 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Head from "next/head";
 import Header from "./components/Header";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-sans",
   subsets: ["latin"],
 });
 
@@ -44,7 +39,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#2563eb" />
         <script src="/theme.js" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}>
+      <body className={`${inter.variable} antialiased bg-background text-foreground`}>
         <Header />
         <main className="container fade-in min-h-[80vh] flex flex-col justify-center items-center">
           {children}
