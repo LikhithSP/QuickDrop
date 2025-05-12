@@ -1,8 +1,13 @@
 "use client";
 import { supabase } from "@/lib/supabaseClient";
 import { useEffect, useState } from "react";
+import type { GetServerSidePropsContext } from "next";
 
-export default function FileReceivePage({ params }: { params: { file: string } }) {
+interface FileParams {
+  file: string;
+}
+
+export default function FileReceivePage({ params }: { params: FileParams }) {
   const [fileUrl, setFileUrl] = useState("");
   const [fileInfo, setFileInfo] = useState<{ name: string; size: number; type: string } | null>(null);
   const [expired, setExpired] = useState(false);

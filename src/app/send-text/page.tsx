@@ -3,6 +3,7 @@ import { useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import QRCode from "qrcode";
 import { FaCopy, FaWhatsapp } from "react-icons/fa";
+import Image from "next/image";
 
 // Use environment variable for site origin
 const SITE_ORIGIN = process.env.NEXT_PUBLIC_SITE_ORIGIN || (typeof window !== "undefined" ? window.location.origin : "");
@@ -87,7 +88,7 @@ export default function SendTextPage() {
               <button onClick={() => navigator.clipboard.writeText(SITE_ORIGIN + link)} className="p-2 text-secondary hover:text-primary transition"><FaCopy /></button>
               <a href={`https://wa.me/?text=${encodeURIComponent(SITE_ORIGIN + link)}`} target="_blank" rel="noopener noreferrer" className="p-2 text-green-600 hover:scale-110 transition"><FaWhatsapp /></a>
             </div>
-            {qr && <img src={qr} alt="QR Code" className="mx-auto mt-2 w-32 h-32 rounded-lg shadow bg-white p-1" />}
+            {qr && <Image src={qr} alt="QR Code" width={128} height={128} className="mx-auto mt-2 w-32 h-32 rounded-lg shadow bg-white p-1" />}
           </div>
         )}
       </div>
