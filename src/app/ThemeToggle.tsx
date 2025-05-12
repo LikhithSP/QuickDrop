@@ -7,7 +7,7 @@ const ThemeToggle = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-  // Only run once after component mounts to avoid hydration mismatch
+  // Only  component mounts to avoid hydration mismatch
   useEffect(() => {
     setMounted(true);
     
