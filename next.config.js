@@ -1,7 +1,6 @@
-import { PHASE_PRODUCTION_BUILD } from 'next/constants'
-
 // This file sets up the build script for Netlify
 // @ts-check
+const { PHASE_PRODUCTION_BUILD } = require('next/constants');
 
 /**
  * @type {import('next').NextConfig}
