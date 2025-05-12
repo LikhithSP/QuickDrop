@@ -37,7 +37,7 @@ export default function FileReceivePage() {
       <h1 className="text-2xl font-bold mb-4">Download File</h1>
       <div className="mb-4">
         <div className="font-semibold">{fileInfo?.name}</div>
-        {/* File size/type could be shown if you store metadata */}
+        {/* File size  could be shown if you store metadata */}
       </div>
       <a
         href={fileUrl}
