@@ -6,8 +6,8 @@ import { FaCopy, FaWhatsapp } from "react-icons/fa";
 
 const MAX_SIZE = 50 * 1024 * 1024; // 50MB
 
-// Use window.location.origin for local development
-const SITE_ORIGIN = typeof window !== "undefined" ? window.location.origin : "";
+// Use environment variable for site origin
+const SITE_ORIGIN = process.env.NEXT_PUBLIC_SITE_ORIGIN || (typeof window !== "undefined" ? window.location.origin : "");
 
 export default function SendFilePage() {
   const [file, setFile] = useState<File | null>(null);
@@ -52,7 +52,7 @@ export default function SendFilePage() {
     const { data: publicUrlData } = supabase.storage.from("drops").getPublicUrl(filePath);
     const url = `/file/${filePath}`;
     setLink(url);
-    QRCode.toDataURL(SITE_ORIGIN + url, (err, url) => setQr(url));
+    QRCode.toDataURL(SITE_ORIGIN + url, (error: Error | null | undefined, url: string) => setQr(url));
     setUploading(false);
   };
 

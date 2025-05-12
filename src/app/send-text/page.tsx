@@ -4,8 +4,8 @@ import { supabase } from "@/lib/supabaseClient";
 import QRCode from "qrcode";
 import { FaCopy, FaWhatsapp } from "react-icons/fa";
 
-// Use window.location.origin for local development
-const SITE_ORIGIN = typeof window !== "undefined" ? window.location.origin : "";
+// Use environment variable for site origin
+const SITE_ORIGIN = process.env.NEXT_PUBLIC_SITE_ORIGIN || (typeof window !== "undefined" ? window.location.origin : "");
 
 export default function SendTextPage() {
   const [text, setText] = useState("");
@@ -42,7 +42,7 @@ export default function SendTextPage() {
     const id = data[0].id;
     const url = `/text/${nickname || id}`;
     setLink(url);
-    QRCode.toDataURL(SITE_ORIGIN + url, (err, url) => setQr(url));
+    QRCode.toDataURL(SITE_ORIGIN + url, (error: Error | null | undefined, url: string) => setQr(url));
     setUploading(false);
   };
 
