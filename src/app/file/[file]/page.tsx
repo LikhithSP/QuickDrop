@@ -20,7 +20,7 @@ export default function FileReceivePage({ params }: { params: { file: string } }
         return;
       }
       setFileUrl(data.publicUrl);
-      // Optionally, fetch file metadata if you store it in a table
+      // Optionally, fetch file  if you store it in a table
       setFileInfo({ name: params.file, size: 0, type: "" });
       setLoading(false);
     }
