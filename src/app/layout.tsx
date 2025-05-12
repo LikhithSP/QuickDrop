@@ -1,30 +1,22 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Head from "next/head";
 import Header from "./components/Header";
 
-const inter = Inter({
-  variable: "--font-sans",
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
   title: "SnapdropX",
   description: "Instantly share files or text with a link or QR code. No login. Minimal, fast, and private.",
-  metadataBase: new URL('https://snapdropx.netlify.app'),
-  manifest: '/manifest.json',
-  icons: {
-    icon: '/favicon.svg',
-  },
-  openGraph: {
-    title: 'SnapdropX',
-    description: 'Instantly share files or text with a link or QR code',
-    url: 'https://snapdropx.netlify.app',
-    siteName: 'SnapdropX',
-    locale: 'en_US',
-    type: 'website',
-  },
 };
 
 export default function RootLayout({
@@ -39,7 +31,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#2563eb" />
         <script src="/theme.js" />
       </head>
-      <body className={`${inter.variable} antialiased bg-background text-foreground`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}>
         <Header />
         <main className="container fade-in min-h-[80vh] flex flex-col justify-center items-center">
           {children}

@@ -6,10 +6,8 @@ import { FaCopy, FaWhatsapp } from "react-icons/fa";
 
 const MAX_SIZE = 50 * 1024 * 1024; // 50MB
 
-// Use environment variable for production or window.location.origin for development
-const SITE_ORIGIN = 
-  process.env.NEXT_PUBLIC_SITE_URL || 
-  (typeof window !== "undefined" ? window.location.origin : "https://snapdropx.netlify.app");
+// Use window.location.origin for local development
+const SITE_ORIGIN = typeof window !== "undefined" ? window.location.origin : "";
 
 export default function SendFilePage() {
   const [file, setFile] = useState<File | null>(null);

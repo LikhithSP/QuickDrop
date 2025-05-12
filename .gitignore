@@ -20,9 +20,6 @@
 # production
 /build
 
-# Netlify
-.netlify/
-
 # misc
 .DS_Store
 *.pem
