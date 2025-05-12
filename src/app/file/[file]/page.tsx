@@ -1,5 +1,4 @@
 "use client";
-import { notFound } from "next/navigation";
 import { supabase } from "@/lib/supabaseClient";
 import { useEffect, useState } from "react";
 

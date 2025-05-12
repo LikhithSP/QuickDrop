@@ -11,10 +11,6 @@ const ThemeToggle = () => {
   useEffect(() => {
     setMounted(true);
     
-    // Check for saved theme preference or use system preference
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
     // Determine the current mode based on the classList rather than localStorage
     // This ensures it matches what the user is seeing (which is set by the theme.js script)
     const isDark = document.documentElement.classList.contains('dark');

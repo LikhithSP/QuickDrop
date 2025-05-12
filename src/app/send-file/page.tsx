@@ -42,14 +42,14 @@ export default function SendFilePage() {
     setError("");
     const ext = file.name.split(".").pop();
     const filePath = `${nickname || Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
-    const { data, error: uploadError } = await supabase.storage.from("drops").upload(filePath, file, { upsert: false });
+    const { error: uploadError } = await supabase.storage.from("drops").upload(filePath, file, { upsert: false });
     if (uploadError) {
       setError("Upload failed: " + uploadError.message);
       setUploading(false);
       return;
     }
     // Generate public URL
-    const { data: publicUrlData } = supabase.storage.from("drops").getPublicUrl(filePath);
+    supabase.storage.from("drops").getPublicUrl(filePath);
     const url = `/file/${filePath}`;
     setLink(url);
     QRCode.toDataURL(SITE_ORIGIN + url, (error: Error | null | undefined, url: string) => setQr(url));
