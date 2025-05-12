@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build"
+  command = "npm run netlify-build"
   publish = "out"
 
 # Handle Next.js client-side routing
@@ -11,6 +11,7 @@
 [build.environment]
   NEXT_PUBLIC_SITE_URL = "https://snapdropx.netlify.app"
   NEXT_USE_NETLIFY_EDGE = "true"
+  NODE_VERSION = "20.11.1"
 
 # Set custom headers
 [[headers]]
