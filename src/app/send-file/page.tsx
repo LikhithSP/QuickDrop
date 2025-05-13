@@ -49,10 +49,9 @@ export default function SendFilePage() {
       return;
     }
     // Generate public URL
-    const { data: publicUrlData } = supabase.storage.from("drops").getPublicUrl(filePath);
-    const url = `/file/${filePath}`;
+    const { data: publicUrlData } = supabase.storage.from("drops").getPublicUrl(filePath);    const url = `/file/${filePath}`;
     setLink(url);
-    QRCode.toDataURL(SITE_ORIGIN + url, (err, url) => setQr(url));
+    QRCode.toDataURL(SITE_ORIGIN + url, (err: Error | null | undefined, url: string) => setQr(url));
     setUploading(false);
   };
 

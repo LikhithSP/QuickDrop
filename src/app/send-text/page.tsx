@@ -39,10 +39,9 @@ export default function SendTextPage() {
       setUploading(false);
       return;
     }
-    const id = data[0].id;
-    const url = `/text/${nickname || id}`;
+    const id = data[0].id;    const url = `/text/${nickname || id}`;
     setLink(url);
-    QRCode.toDataURL(SITE_ORIGIN + url, (err, url) => setQr(url));
+    QRCode.toDataURL(SITE_ORIGIN + url, (err: Error | null | undefined, url: string) => setQr(url));
     setUploading(false);
   };
 
