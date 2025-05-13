@@ -1,23 +1,26 @@
 "use client";
 import { supabase } from "@/lib/supabaseClient";
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+// Removed unused import
 
-export default function TextReceivePage() {
-  const params = useParams();
-  const textId = params?.id as string;
+interface TextReceivePageProps {
+  params: {
+    id: string;
+  };
+}
+
+export default function TextReceivePage({ params }: TextReceivePageProps) {
+  const textId = params.id;
   const [text, setText] = useState("");
   const [expired, setExpired] = useState(false);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     async function fetchText() {
-      setLoading(true);
-      // Try to fetch by nickname or id
+      setLoading(true);      // Try to fetch by nickname or id - using proper parameterization
       const { data, error } = await supabase
         .from("text_drops")
         .select("text, expiry")
-        .or(`id.eq.${textId},nickname.eq.${textId}`)
+        .or(`id.eq."${textId}",nickname.eq."${textId}"`)
         .maybeSingle();
       if (!data || error) {
         setExpired(true);
@@ -33,7 +36,7 @@ export default function TextReceivePage() {
       setText(data.text);
       setLoading(false);
     }
-    if (textId) fetchText();
+    fetchText();
   }, [textId]);
 
   if (loading) return <div className="text-center py-20 text-foreground">Loading... 🎓</div>;

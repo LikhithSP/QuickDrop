@@ -4,8 +4,12 @@ import { supabase } from "@/lib/supabaseClient";
 import QRCode from "qrcode";
 import { FaCopy, FaWhatsapp } from "react-icons/fa";
 
-// Use window.location.origin for local development
-const SITE_ORIGIN = typeof window !== "undefined" ? window.location.origin : "";
+// Handle origin correctly for both development and Vercel deployments
+const SITE_ORIGIN = typeof window !== "undefined" 
+  ? window.location.origin 
+  : process.env.VERCEL_URL 
+    ? `https://${process.env.VERCEL_URL}`
+    : "";
 
 export default function SendTextPage() {
   const [text, setText] = useState("");

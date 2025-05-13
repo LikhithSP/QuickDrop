@@ -1,9 +1,15 @@
 "use client";
-import { notFound } from "next/navigation";
+// Removed unused import
 import { supabase } from "@/lib/supabaseClient";
 import { useEffect, useState } from "react";
 
-export default function FileReceivePage({ params }: { params: { file: string } }) {
+interface FileReceivePageProps {
+  params: {
+    file: string;
+  };
+}
+
+export default function FileReceivePage({ params }: FileReceivePageProps) {
   const [fileUrl, setFileUrl] = useState("");
   const [fileInfo, setFileInfo] = useState<{ name: string; size: number; type: string } | null>(null);
   const [expired, setExpired] = useState(false);

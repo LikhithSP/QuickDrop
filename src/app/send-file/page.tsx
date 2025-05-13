@@ -6,8 +6,12 @@ import { FaCopy, FaWhatsapp } from "react-icons/fa";
 
 const MAX_SIZE = 50 * 1024 * 1024; // 50MB
 
-// Use window.location.origin for local development
-const SITE_ORIGIN = typeof window !== "undefined" ? window.location.origin : "";
+// Handle origin correctly for both development and Vercel deployments
+const SITE_ORIGIN = typeof window !== "undefined" 
+  ? window.location.origin 
+  : process.env.VERCEL_URL 
+    ? `https://${process.env.VERCEL_URL}`
+    : "";
 
 export default function SendFilePage() {
   const [file, setFile] = useState<File | null>(null);
@@ -39,17 +43,16 @@ export default function SendFilePage() {
   const handleUpload = async () => {
     if (!file) return;
     setUploading(true);
-    setError("");
-    const ext = file.name.split(".").pop();
+    setError("");    const ext = file.name.split(".").pop();
     const filePath = `${nickname || Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
-    const { data, error: uploadError } = await supabase.storage.from("drops").upload(filePath, file, { upsert: false });
+    const { error: uploadError } = await supabase.storage.from("drops").upload(filePath, file, { upsert: false });
     if (uploadError) {
       setError("Upload failed: " + uploadError.message);
       setUploading(false);
       return;
     }
     // Generate public URL
-    const { data: publicUrlData } = supabase.storage.from("drops").getPublicUrl(filePath);
+    supabase.storage.from("drops").getPublicUrl(filePath);
     const url = `/file/${filePath}`;
     setLink(url);
     QRCode.toDataURL(SITE_ORIGIN + url, (err, url) => setQr(url));
