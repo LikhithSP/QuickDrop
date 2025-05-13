@@ -6,6 +6,8 @@ SnapdropX is a modern file and text sharing web application built with Next.js a
 
 - **File Sharing**: Upload files up to 50MB and share via a link or QR code
 - **Text Sharing**: Share text snippets with customizable expiration times
+- **Short Codes**: Generate 4-character codes for easy sharing
+- **Code Access**: Enter a shared code to access content from anywhere in the app
 - **Easy Sharing**: Copy links or share directly to WhatsApp
 - **QR Codes**: Generate QR codes for easy mobile access
 - **Expiration Options**: Choose between 24-hour or 7-day link expiration
@@ -65,10 +67,20 @@ For this project to work correctly, you need to set up your Supabase project wit
    - `expiry` (timestamp with timezone)
    - `created_at` (timestamp with timezone, default: now())
 
-2. A storage bucket named `drops` with the following permissions:
+2. A `codes` table with the following schema:
+   - `id` (serial, primary key)
+   - `code` (varchar(4), unique)
+   - `resource_type` (varchar(10)) - 'text' or 'file'
+   - `resource_id` (text) - Contains either the UUID for text or filepath for files
+   - `created_at` (timestamp with timezone, default: now())
+   - `expiry` (timestamp with timezone)
+
+3. A storage bucket named `drops` with the following permissions:
    - Anonymous users: INSERT, SELECT
 
-3. Set up storage policies as needed to allow file uploads and downloads.
+4. Set up storage policies as needed to allow file uploads and downloads.
+
+See `supabase-schema-update.sql` for help setting up the codes table and required functions.
 
 ## Environment Variables
 

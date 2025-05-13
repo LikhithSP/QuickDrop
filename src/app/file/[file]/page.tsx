@@ -2,6 +2,7 @@
 // Removed unused import
 import { supabase } from "@/lib/supabaseClient";
 import { useEffect, useState } from "react";
+import { use } from "react";
 
 interface FileReceivePageProps {
   params: {
@@ -10,6 +11,7 @@ interface FileReceivePageProps {
 }
 
 export default function FileReceivePage({ params }: FileReceivePageProps) {
+  const filePath = use(params).file;
   const [fileUrl, setFileUrl] = useState("");
   const [fileInfo, setFileInfo] = useState<{ name: string; size: number; type: string } | null>(null);
   const [expired, setExpired] = useState(false);
@@ -19,19 +21,18 @@ export default function FileReceivePage({ params }: FileReceivePageProps) {
     async function fetchFile() {
       setLoading(true);
       // Try to get public URL from Supabase Storage
-      const { data } = supabase.storage.from("drops").getPublicUrl(params.file);
+      const { data } = supabase.storage.from("drops").getPublicUrl(filePath);
       if (!data?.publicUrl) {
         setExpired(true);
         setLoading(false);
         return;
-      }
-      setFileUrl(data.publicUrl);
+      }      setFileUrl(data.publicUrl);
       // Optionally, fetch file metadata if you store it in a table
-      setFileInfo({ name: params.file, size: 0, type: "" });
+      setFileInfo({ name: filePath, size: 0, type: "" });
       setLoading(false);
     }
     fetchFile();
-  }, [params.file]);
+  }, [filePath]);
 
   if (loading) return <div className="text-center py-20 text-foreground">Loading... 🎓</div>;
   if (expired) return <div className="text-center py-20 text-red-500">File not found or expired.</div>;

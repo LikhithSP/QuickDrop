@@ -26,3 +26,35 @@ export const supabase = createClient(
   supabaseUrl || 'https://placeholder-url.supabase.co',
   supabaseAnonKey || 'placeholder-key'
 );
+
+// Helper function to generate a random 4-character code
+export const generateCode = async (resourceType: 'text' | 'file', resourceId: string, expiry: string) => {
+  // Generate expiry date
+  const expiryDate = expiry === "24h" 
+    ? new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString() 
+    : new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
+
+  // Generate a random code (4 characters with letters and numbers)
+  const characters = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789';
+  let code = '';
+  for (let i = 0; i < 4; i++) {
+    code += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+
+  // Save the code to the database
+  const { error } = await supabase
+    .from('codes')
+    .insert([{
+      code,
+      resource_type: resourceType,
+      resource_id: resourceId,
+      expiry: expiryDate
+    }]);
+    
+  if (error) {
+    console.error("Error saving code:", error);
+    return null;
+  }
+  
+  return code;
+};

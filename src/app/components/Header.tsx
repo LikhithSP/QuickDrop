@@ -12,8 +12,6 @@ export default function Header() {
       <nav className="container flex items-center justify-between py-4">
         <Link href="/" className="text-2xl font-bold tracking-tight text-primary hover:text-accent transition-colors">SnapdropX</Link>
         <div className="flex items-center gap-6 text-base font-medium">
-          <Link href="/send-file" className="text-card-text hover:text-accent transition-colors">Send File</Link>
-          <Link href="/send-text" className="text-card-text hover:text-accent transition-colors">Send Text</Link>
           <ThemeToggle />
         </div>
       </nav>

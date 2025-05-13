@@ -1,6 +1,7 @@
 "use client";
 import { supabase } from "@/lib/supabaseClient";
 import { useEffect, useState } from "react";
+import { use } from "react";
 // Removed unused import
 
 interface TextReceivePageProps {
@@ -10,7 +11,7 @@ interface TextReceivePageProps {
 }
 
 export default function TextReceivePage({ params }: TextReceivePageProps) {
-  const textId = params.id;
+  const textId = use(params).id;
   const [text, setText] = useState("");
   const [expired, setExpired] = useState(false);
   const [loading, setLoading] = useState(true);

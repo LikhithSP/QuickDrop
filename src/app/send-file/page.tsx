@@ -1,8 +1,8 @@
 "use client";
 import { useRef, useState } from "react";
-import { supabase } from "@/lib/supabaseClient";
+import { supabase, generateCode } from "@/lib/supabaseClient";
 import QRCode from "qrcode";
-import { FaCopy, FaWhatsapp } from "react-icons/fa";
+import { FaCopy, FaWhatsapp, FaLink } from "react-icons/fa";
 
 const MAX_SIZE = 50 * 1024 * 1024; // 50MB
 
@@ -16,11 +16,11 @@ const SITE_ORIGIN = typeof window !== "undefined"
 export default function SendFilePage() {
   const [file, setFile] = useState<File | null>(null);
   const [nickname, setNickname] = useState("");
-  const [expiry, setExpiry] = useState("24h");
-  const [uploading, setUploading] = useState(false);
+  const [expiry, setExpiry] = useState("24h");  const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
   const [link, setLink] = useState("");
   const [qr, setQr] = useState("");
+  const [code, setCode] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleFile = (f: File) => {
@@ -39,11 +39,11 @@ export default function SendFilePage() {
       handleFile(e.dataTransfer.files[0]);
     }
   };
-
   const handleUpload = async () => {
     if (!file) return;
     setUploading(true);
-    setError("");    const ext = file.name.split(".").pop();
+    setError("");    
+    const ext = file.name.split(".").pop();
     const filePath = `${nickname || Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
     const { error: uploadError } = await supabase.storage.from("drops").upload(filePath, file, { upsert: false });
     if (uploadError) {
@@ -51,8 +51,21 @@ export default function SendFilePage() {
       setUploading(false);
       return;
     }
+    
     // Generate public URL
     supabase.storage.from("drops").getPublicUrl(filePath);
+    
+    // Generate a unique code
+    const generatedCode = await generateCode('file', filePath, expiry);
+    if (!generatedCode) {
+      setError("Failed to generate sharing code.");
+      setUploading(false);
+      return;
+    }
+    
+    setCode(generatedCode);
+    
+    // Still generate URL for QR code and direct link
     const url = `/file/${filePath}`;
     setLink(url);
     QRCode.toDataURL(SITE_ORIGIN + url, (err, url) => setQr(url));
@@ -98,23 +111,38 @@ export default function SendFilePage() {
             <option value="7d">7 days</option>
           </select>
         </div>
-        {error && <div className="text-red-500 mb-3 text-center">{error}</div>}
-        <button
+        {error && <div className="text-red-500 mb-3 text-center">{error}</div>}        <button
           className="w-full bg-button-bg hover:bg-button-hover text-button-text rounded-xl py-3 px-6 font-semibold shadow-md transition-all duration-200 mb-4 disabled:opacity-60"
           onClick={handleUpload}
           disabled={!file || uploading}
         >
-          {uploading ? "Uploading..." : "Upload & Get Link"}
+          {uploading ? "Sharing..." : "Share"}
         </button>
-        {link && (
+        {code && (
           <div className="mt-8 text-center">
-            <div className="mb-2 text-secondary">Share this link:</div>
-            <div className="flex items-center justify-center gap-2 mb-2">
-              <input className="border rounded-lg p-2 w-60 bg-input-bg text-input-text border-input-border" value={SITE_ORIGIN + link} readOnly />
-              <button onClick={() => navigator.clipboard.writeText(SITE_ORIGIN + link)} className="p-2 text-secondary hover:text-primary transition"><FaCopy /></button>
-              <a href={`https://wa.me/?text=${encodeURIComponent(SITE_ORIGIN + link)}`} target="_blank" rel="noopener noreferrer" className="p-2 text-green-600 hover:scale-110 transition"><FaWhatsapp /></a>
+            <div className="mb-4">
+              <div className="mb-2 text-secondary font-medium">Share this code:</div>
+              <div className="text-4xl font-bold font-mono tracking-wider bg-accent/20 py-3 px-6 rounded-lg inline-block">
+                {code}
+              </div>
+              <div className="mt-1 text-xs text-secondary">
+                Anyone with this code can access your file at {SITE_ORIGIN}
+              </div>
+              <button onClick={() => navigator.clipboard.writeText(code)} 
+                      className="mt-2 text-secondary hover:text-primary transition inline-flex items-center gap-1 text-sm border border-input-border px-3 py-1 rounded-lg">
+                <FaCopy size={14} /> Copy Code
+              </button>
             </div>
-            {qr && <img src={qr} alt="QR Code" className="mx-auto mt-2 w-32 h-32 rounded-lg shadow bg-white p-1" />}
+            
+            <div className="mt-6">
+              <div className="mb-2 text-secondary font-medium">Or share this link:</div>
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <input className="border rounded-lg p-2 w-60 bg-input-bg text-input-text border-input-border text-sm" value={SITE_ORIGIN + link} readOnly />
+                <button onClick={() => navigator.clipboard.writeText(SITE_ORIGIN + link)} className="p-2 text-secondary hover:text-primary transition"><FaCopy /></button>
+                <a href={`https://wa.me/?text=${encodeURIComponent(SITE_ORIGIN + link)}`} target="_blank" rel="noopener noreferrer" className="p-2 text-green-600 hover:scale-110 transition"><FaWhatsapp /></a>
+              </div>
+              {qr && <img src={qr} alt="QR Code" className="mx-auto mt-2 w-32 h-32 rounded-lg shadow bg-white p-1" />}
+            </div>
           </div>
         )}
       </div>
