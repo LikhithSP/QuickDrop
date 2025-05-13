@@ -7,9 +7,13 @@ const ThemeToggle = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-  // Only  component mounts to avoid hydration mismatch
+  // Only run once after component mounts to avoid hydration mismatch
   useEffect(() => {
     setMounted(true);
+    
+    // Check for saved theme preference or use system preference
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
     // Determine the current mode based on the classList rather than localStorage
     // This ensures it matches what the user is seeing (which is set by the theme.js script)
@@ -21,7 +25,7 @@ const ThemeToggle = () => {
     const newMode = !isDarkMode;
     setIsDarkMode(newMode);
     
-    // Update  and 
+    // Update DOM and save preference
     if (newMode) {
       document.documentElement.classList.add('dark');
       document.documentElement.classList.remove('light');

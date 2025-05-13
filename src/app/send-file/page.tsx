@@ -3,12 +3,11 @@ import { useRef, useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import QRCode from "qrcode";
 import { FaCopy, FaWhatsapp } from "react-icons/fa";
-import Image from "next/image";
 
 const MAX_SIZE = 50 * 1024 * 1024; // 50MB
 
-// Use environment variable for site origin
-const SITE_ORIGIN = process.env.NEXT_PUBLIC_SITE_ORIGIN || (typeof window !== "undefined" ? window.location.origin : "");
+// Use window.location.origin for local development
+const SITE_ORIGIN = typeof window !== "undefined" ? window.location.origin : "";
 
 export default function SendFilePage() {
   const [file, setFile] = useState<File | null>(null);
@@ -43,17 +42,17 @@ export default function SendFilePage() {
     setError("");
     const ext = file.name.split(".").pop();
     const filePath = `${nickname || Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
-    const { error: uploadError } = await supabase.storage.from("drops").upload(filePath, file, { upsert: false });
+    const { data, error: uploadError } = await supabase.storage.from("drops").upload(filePath, file, { upsert: false });
     if (uploadError) {
       setError("Upload failed: " + uploadError.message);
       setUploading(false);
       return;
     }
     // Generate public URL
-    supabase.storage.from("drops").getPublicUrl(filePath);
+    const { data: publicUrlData } = supabase.storage.from("drops").getPublicUrl(filePath);
     const url = `/file/${filePath}`;
     setLink(url);
-    QRCode.toDataURL(SITE_ORIGIN + url, (error: Error | null | undefined, url: string) => setQr(url));
+    QRCode.toDataURL(SITE_ORIGIN + url, (err, url) => setQr(url));
     setUploading(false);
   };
 
@@ -112,7 +111,7 @@ export default function SendFilePage() {
               <button onClick={() => navigator.clipboard.writeText(SITE_ORIGIN + link)} className="p-2 text-secondary hover:text-primary transition"><FaCopy /></button>
               <a href={`https://wa.me/?text=${encodeURIComponent(SITE_ORIGIN + link)}`} target="_blank" rel="noopener noreferrer" className="p-2 text-green-600 hover:scale-110 transition"><FaWhatsapp /></a>
             </div>
-            {qr && <Image src={qr} alt="QR Code" width={128} height={128} className="mx-auto mt-2 w-32 h-32 rounded-lg shadow bg-white p-1" />}
+            {qr && <img src={qr} alt="QR Code" className="mx-auto mt-2 w-32 h-32 rounded-lg shadow bg-white p-1" />}
           </div>
         )}
       </div>

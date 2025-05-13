@@ -1,14 +1,9 @@
 "use client";
+import { notFound } from "next/navigation";
 import { supabase } from "@/lib/supabaseClient";
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
 
-// Use the useParams hook instead of accepting params as props
-export default function FileReceivePage() {
-  // Get the file parameter from the URL using Next.js hooks
-  const params = useParams();
-  const fileParam = params?.file as string;
-  
+export default function FileReceivePage({ params }: { params: { file: string } }) {
   const [fileUrl, setFileUrl] = useState("");
   const [fileInfo, setFileInfo] = useState<{ name: string; size: number; type: string } | null>(null);
   const [expired, setExpired] = useState(false);
@@ -18,7 +13,7 @@ export default function FileReceivePage() {
     async function fetchFile() {
       setLoading(true);
       // Try to get public URL from Supabase Storage
-      const { data } = supabase.storage.from("drops").getPublicUrl(fileParam);
+      const { data } = supabase.storage.from("drops").getPublicUrl(params.file);
       if (!data?.publicUrl) {
         setExpired(true);
         setLoading(false);
@@ -26,14 +21,11 @@ export default function FileReceivePage() {
       }
       setFileUrl(data.publicUrl);
       // Optionally, fetch file metadata if you store it in a table
-      setFileInfo({ name: fileParam, size: 0, type: "" });
+      setFileInfo({ name: params.file, size: 0, type: "" });
       setLoading(false);
     }
-    
-    if (fileParam) {
-      fetchFile();
-    }
-  }, [fileParam]);
+    fetchFile();
+  }, [params.file]);
 
   if (loading) return <div className="text-center py-20 text-foreground">Loading... 🎓</div>;
   if (expired) return <div className="text-center py-20 text-red-500">File not found or expired.</div>;

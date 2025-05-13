@@ -1,4 +1,6 @@
 "use client";
+import { useState } from "react";
+import { FaMoon, FaSun } from "react-icons/fa";
 import Link from "next/link";
 
 export default function Home() {
