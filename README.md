@@ -1,6 +1,6 @@
-# SnapdropX
+# QuickDrop
 
-SnapdropX is a modern file and text sharing web application built with Next.js and Supabase. It allows users to easily share files and text snippets using temporary links.
+QuickDrop is a modern file and text sharing web application built with Next.js and Supabase. It allows users to easily share files and text snippets using temporary links.
 
 ## Features
 
@@ -18,8 +18,8 @@ SnapdropX is a modern file and text sharing web application built with Next.js a
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/SnapdropX.git
-   cd SnapdropX
+   git clone https://github.com/yourusername/QuickDrop.git
+   cd QuickDrop
    ```
 
 2. Install dependencies:

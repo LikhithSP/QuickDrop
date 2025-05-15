@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Head from "next/head";
@@ -14,8 +13,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "SnapdropX",
+export const metadata = {
+  title: "QuickDrop",
   description: "Instantly share files or text with a link or QR code. No login. Minimal, fast, and private.",
 };
 
@@ -36,8 +35,8 @@ export default function RootLayout({
         <main className="container fade-in min-h-[80vh] flex flex-col justify-center items-center">
           {children}
         </main>
-        <footer className="w-full border-t border-card-border text-center py-6 text-sm text-secondary mt-8">
-          &copy; {new Date().getFullYear()} SnapdropX. All rights reserved.
+        <footer className="w-full text-center py-6 text-sm text-secondary mt-8">
+          &copy; {new Date().getFullYear()} QuickDrop. All rights reserved.
         </footer>
       </body>
     </html>
