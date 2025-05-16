@@ -139,6 +139,44 @@ button:hover, .button:hover {
   background: var(--button-hover);
 }
 
+/* Custom styles for Send File and Send Text buttons only in light theme */
+:root:not(.dark) .send-main-btn {
+  background: #915858 !important;
+  color: #fff !important;
+  border: 2px solid #915858 !important;
+  background-image: none !important;
+}
+:root:not(.dark) .send-main-btn:hover {
+  background: #7a4848 !important;
+  color: #fff !important;
+  border-color: #7a4848 !important;
+}
+
+/* Custom styles for Share button only in light theme */
+:root:not(.dark) .share-btn {
+  background: #915858 !important;
+  color: #fff !important;
+  border: 2px solid #915858 !important;
+  background-image: none !important;
+}
+:root:not(.dark) .share-btn:hover {
+  background: #7a4848 !important;
+  color: #fff !important;
+  border-color: #7a4848 !important;
+}
+
+:root.dark .send-main-btn {
+  background: #bd7b6e!important;
+  color: #18181b !important;
+  border: 2px solid #bd7b6e !important;
+  background-image: none !important;
+}
+:root.dark .send-main-btn:hover {
+  background: #915f55 !important;
+  color: #18181b !important;
+  border-color: #915f55 !important;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
   background: transparent;

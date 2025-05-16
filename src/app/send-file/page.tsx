@@ -112,7 +112,7 @@ export default function SendFilePage() {
           </select>
         </div>
         {error && <div className="text-red-500 mb-3 text-center">{error}</div>}        <button
-          className="w-full bg-button-bg hover:bg-button-hover text-button-text rounded-xl py-3 px-6 font-semibold shadow-md transition-all duration-200 mb-4 disabled:opacity-60"
+          className="w-full share-btn bg-button-bg hover:bg-button-hover text-button-text rounded-xl py-3 px-6 font-semibold shadow-md transition-all duration-200 mb-4 disabled:opacity-60"
           onClick={handleUpload}
           disabled={!file || uploading}
         >

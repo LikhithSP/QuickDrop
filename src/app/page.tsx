@@ -56,7 +56,7 @@ export default function Home() {
       <div className="flex flex-col sm:flex-row gap-6 w-full max-w-md mb-6">
         <Link
           href="/send-file"
-          className="flex-1 bg-gradient-to-br from-primary/80 to-secondary/80 hover:from-primary hover:to-secondary text-white rounded-xl py-5 px-7 text-lg font-semibold shadow-lg text-center transition-all duration-200 border-2 border-primary/30 hover:border-primary/60 scale-100 hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-primary/40"
+          className="send-main-btn flex-1 rounded-xl py-5 px-7 text-lg font-semibold shadow-lg text-center transition-all duration-200 border-2 scale-100 hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-primary/40"
         >
           <span className="flex items-center justify-center gap-2">
             Send File
@@ -64,7 +64,7 @@ export default function Home() {
         </Link>
         <Link
           href="/send-text"
-          className="flex-1 bg-gradient-to-br from-secondary/80 to-primary/80 hover:from-secondary hover:to-primary text-white rounded-xl py-5 px-7 text-lg font-semibold shadow-lg text-center transition-all duration-200 border-2 border-secondary/30 hover:border-secondary/60 scale-100 hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-secondary/40"
+          className="send-main-btn flex-1 rounded-xl py-5 px-7 text-lg font-semibold shadow-lg text-center transition-all duration-200 border-2 scale-100 hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-secondary/40"
         >
           <span className="flex items-center justify-center gap-2">
             Send Text
