@@ -3,7 +3,6 @@
 import Link from "next/link";
 import dynamic from "next/dynamic";
 
-// Import ThemeToggle with no SSR to prevent hydration mismatch
 const ThemeToggle = dynamic(() => import('../ThemeToggle'), { ssr: false });
 
 export default function Header() {
