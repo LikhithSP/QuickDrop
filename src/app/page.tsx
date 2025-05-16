@@ -21,7 +21,7 @@ export default function Home() {
   };
 
   return (
-    <div className="fade-in w-full flex flex-col items-center justify-center min-h-[70vh]">
+    <div className="fade-in w-full flex flex-col items-center justify-center min-h-[60vh] mt-[-48px]">
       <h1 className="text-4xl sm:text-5xl font-extrabold mb-3 tracking-tight text-center text-foreground">QuickDrop</h1>
       <p className="mb-8 text-center max-w-xl text-lg text-secondary font-medium">Instantly share files or text with a link or QR code. No login. Minimal, fast, and private.</p>
       
@@ -93,10 +93,6 @@ export default function Home() {
             <svg width="28" height="28" viewBox="0 0 100 100" fill="none"><rect width="100" height="100" rx="30" fill="#06B6D4" /></svg>
           </div>
         </div>
-      </div>
-
-      <div className="mt-10 text-xs text-secondary flex items-center gap-2">
-        <span>Made with ❤️ for privacy and speed</span>
       </div>
     </div>
   );
