@@ -46,9 +46,9 @@ const ThemeToggle = () => {
       aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
     >
       {isDarkMode ? (
-        <FaSun className="text-amber-500 w-5 h-5" />
+        <FaSun className="w-5 h-5" style={{ color: 'var(--primary)' }} />
       ) : (
-        <FaMoon className="text-indigo-600 w-5 h-5" />
+        <FaMoon className="w-5 h-5" style={{ color: 'var(--primary)' }} />
       )}
     </button>
   );

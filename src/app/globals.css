@@ -3,16 +3,16 @@
 :root {
   --background: #f6f7f9;
   --foreground: #18181b;
-  --primary: #2563eb;
+  --primary: #915858;
   --secondary: #64748b;
   --accent: #38bdf8;
-  --card-bg: #ffffff;
+  --card-bg: #f1ebeb;
   --card-text: #18181b;
-  --card-border: #e5e7eb;
-  --input-bg: #ffffff;
-  --input-border: #d1d5db;
+  --card-border: #1717183f; 
+  --input-bg: #eeeaea;
+  --input-border:#915858 ;
   --input-text: #18181b;
-  --button-bg: #e0dddde7;
+  --button-bg: #f1efefe7;
   --button-text: #413c3c;
   --button-hover: #eef0f3;
   --radius: 16px;
@@ -23,9 +23,9 @@
 :root.dark {
   --background: #0a0a0a;
   --foreground: #f4f4f5;
-  --primary: #60a5fa;
+  --primary: #915858;
   --secondary: #a1a1aa;
-  --accent: #38bdf8;
+  --accent: #704823;
   --card-bg: #161618;
   --card-text: #f4f4f5;
   --card-border: #27272a;
@@ -43,14 +43,14 @@
   :root:not(.light) {
     --background: #0a0a0a;
     --foreground: #f4f4f5;
-    --primary: #60a5fa;
+    --primary: #c08c8c;
     --secondary: #a1a1aa;
     --accent: #38bdf8;
-    --card-bg: #161618;
+    --card-bg: #161616;
     --card-text: #f4f4f5;
-    --card-border: #27272a;
-    --input-bg: #27272a;
-    --input-border: #3f3f46;
+    --card-border: #3d3d3f;
+    --input-bg: #161616;
+    --input-border: #8b8181;
     --input-text: #f4f4f5;
     --button-bg: #ebf0f5;
     --button-text: #0a0a0a;
@@ -59,7 +59,9 @@
 }
 
 body {
-  background: var(--background);
+  background: #ebebee;
+  background-size: cover !important;
+  background-position: center;
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   min-height: 100vh;
@@ -68,6 +70,13 @@ body {
   transition: background var(--transition), color var(--transition);
   letter-spacing: 0.01em;
   font-size: 1.05rem;
+}
+
+html.dark body {
+  background: #0c0b0b;
+  background-size: cover !important;
+  background-position: center !important;
+  backdrop-filter: contrast(0.8) brightness(0.8);
 }
 
 * {
@@ -81,7 +90,7 @@ a {
   transition: color var(--transition);
 }
 a:hover {
-  color: var(--accent);
+  color:  #8a5353;
 }
 
 .container {
@@ -104,7 +113,7 @@ a:hover {
 input, textarea, select {
   background: var(--input-bg);
   color: var(--input-text);
-  border: 1px solid var(--input-border);
+  border: 1.6px solid var(--input-border);
   border-radius: 8px;
   padding: 0.75rem 1rem;
   width: 100%;
@@ -121,13 +130,51 @@ input:focus, textarea:focus, select:focus {
 button, .button {
   background: var(--button-bg);
   color: var(--button-text);
-  border-radius: 10px;
+  border-radius: 30px;
   font-weight: 600;
   transition: background 0.2s;
 }
 
 button:hover, .button:hover {
   background: var(--button-hover);
+}
+
+/* Custom styles for Send File and Send Text buttons only in light theme */
+:root:not(.dark) .send-main-btn {
+  background: #915858 !important;
+  color: #fff !important;
+  border: 2px solid #915858 !important;
+  background-image: none !important;
+}
+:root:not(.dark) .send-main-btn:hover {
+  background: #7a4848 !important;
+  color: #fff !important;
+  border-color: #7a4848 !important;
+}
+
+/* Custom styles for Share button only in light theme */
+:root:not(.dark) .share-btn {
+  background: #915858 !important;
+  color: #fff !important;
+  border: 2px solid #915858 !important;
+  background-image: none !important;
+}
+:root:not(.dark) .share-btn:hover {
+  background: #7a4848 !important;
+  color: #fff !important;
+  border-color: #7a4848 !important;
+}
+
+:root.dark .send-main-btn {
+  background: #bd7b6e!important;
+  color: #18181b !important;
+  border: 2px solid #bd7b6e !important;
+  background-image: none !important;
+}
+:root.dark .send-main-btn:hover {
+  background: #915f55 !important;
+  color: #18181b !important;
+  border-color: #915f55 !important;
 }
 
 ::-webkit-scrollbar {

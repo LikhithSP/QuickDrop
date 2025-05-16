@@ -1,93 +1,103 @@
-# SnapdropX
+<p align="center">
+  <img src="public/favicon.svg" width="80" alt="QuickDrop Logo" />
+</p>
+<h1 align="center">QuickDrop</h1>
+<p align="center">
+  <b>Instant, private, and hassle-free file & text sharing.</b><br>
+  Share files or notes with a link or QR code. No login. Minimal, fast, and secure.<br>
+  <a href="https://quickdrop.vercel.app" target="_blank">quickdrop.vercel.app</a>
+</p>
 
-SnapdropX is a modern file and text sharing web application built with Next.js and Supabase. It allows users to easily share files and text snippets using temporary links.
+---
 
-## Features
+## 🚀 Features
 
-- **File Sharing**: Upload files up to 50MB and share via a link or QR code
-- **Text Sharing**: Share text snippets with customizable expiration times
-- **Short Codes**: Generate 4-character codes for easy sharing
-- **Code Access**: Enter a shared code to access content from anywhere in the app
-- **Easy Sharing**: Copy links or share directly to WhatsApp
-- **QR Codes**: Generate QR codes for easy mobile access
-- **Expiration Options**: Choose between 24-hour or 7-day link expiration
+- **File Sharing:** Upload files up to 50MB and share via a link or QR code
+- **Text Sharing:** Share notes, code, or any text with customizable expiration
+- **Short Codes:** Generate 4-character codes for easy access
+- **No Login Required:** Share instantly, no sign-up or account needed
+- **QR Codes:** Instantly generate QR codes for mobile sharing
+- **Easy Sharing:** Copy links or share directly to WhatsApp
+- **Expiration Options:** Choose 24-hour or 7-day link expiration
+- **Modern UI:** Clean, responsive, and mobile-friendly design
 
-## Getting Started
+---
+
+## 🛠 Getting Started
 
 ### Local Development
 
-1. Clone the repository:
+1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/SnapdropX.git
-   cd SnapdropX
+   git clone https://github.com/yourusername/QuickDrop.git
+   cd QuickDrop
    ```
 
-2. Install dependencies:
+2. **Install dependencies:**
    ```bash
    npm install
    ```
 
-3. Create a `.env.local` file with your Supabase credentials:
+3. **Configure environment variables:**  
+   Create a `.env.local` file in the root directory:
    ```
    NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
    NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
    ```
 
-4. Run the development server:
+4. **Run the development server:**
    ```bash
    npm run dev
    ```
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+---
 
-## Deploying to Vercel
-
-This project is optimized for deployment on Vercel. Follow these steps for deployment:
+## ☁️ Deploying to Vercel
 
 1. Push your code to a GitHub repository.
-
-2. Connect your GitHub account to Vercel and import the repository.
-
-3. Configure the following environment variables in the Vercel project settings:
-   - `NEXT_PUBLIC_SUPABASE_URL`: Your Supabase project URL
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`: Your Supabase anonymous key
-
+2. Connect your GitHub account to [Vercel](https://vercel.com/) and import the repository.
+3. Set the following environment variables in your Vercel project settings:
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 4. Deploy the project.
+5. (Optional) Configure your custom domain to `quickdrop.vercel.app` or your own domain.
 
-5. (Optional) Configure a custom domain in the Vercel project settings.
+---
 
-## Supabase Setup
+## 🗄 Supabase Setup
 
-For this project to work correctly, you need to set up your Supabase project with:
-
-1. A `text_drops` table with the following schema:
+1. **Create a `text_drops` table:**
    - `id` (uuid, primary key)
    - `text` (text)
    - `nickname` (text, nullable)
    - `expiry` (timestamp with timezone)
    - `created_at` (timestamp with timezone, default: now())
 
-2. A `codes` table with the following schema:
+2. **Create a `codes` table:**
    - `id` (serial, primary key)
    - `code` (varchar(4), unique)
    - `resource_type` (varchar(10)) - 'text' or 'file'
-   - `resource_id` (text) - Contains either the UUID for text or filepath for files
+   - `resource_id` (text)
    - `created_at` (timestamp with timezone, default: now())
    - `expiry` (timestamp with timezone)
 
-3. A storage bucket named `drops` with the following permissions:
-   - Anonymous users: INSERT, SELECT
+3. **Create a storage bucket named `drops`** with permissions for anonymous users: INSERT, SELECT.
 
-4. Set up storage policies as needed to allow file uploads and downloads.
+4. Set up storage policies as needed for uploads/downloads.
 
-See `supabase-schema-update.sql` for help setting up the codes table and required functions.
+See [`supabase-schema-update.sql`](./supabase-schema-update.sql) for schema details.
 
-## Environment Variables
+---
+
+## ⚙️ Environment Variables
 
 - `NEXT_PUBLIC_SUPABASE_URL`: Your Supabase project URL
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`: Your Supabase anonymous key
 
-## Technologies
+---
+
+## 🧰 Tech Stack
 
 - [Next.js](https://nextjs.org/)
 - [React](https://reactjs.org/)
@@ -95,10 +105,16 @@ See `supabase-schema-update.sql` for help setting up the codes table and require
 - [Supabase](https://supabase.io/)
 - [Tailwind CSS](https://tailwindcss.com/)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 📦 Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+---
+
+<p align="center">
+  <b>Made with ❤️ by <a href="https://github.com/LikhithSP" target="_blank">LikhithSP</a></b>
+</p>
