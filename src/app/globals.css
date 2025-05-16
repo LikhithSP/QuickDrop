@@ -8,7 +8,7 @@
   --accent: #38bdf8;
   --card-bg: #eee4e4;
   --card-text: #18181b;
-  --card-border: #e5e7eb;
+  --card-border: #1717183f; 
   --input-bg: #eeeaea;
   --input-border:#915858 ;
   --input-text: #18181b;
@@ -60,6 +60,8 @@
 
 body {
   background: url("https://marketplace.canva.com/EAGEncMdbEM/1/0/1600w/canva-beige-brown-simple-abstract-desktop-wallpaper-pE_Ruap0PiI.jpg");
+  background-size: cover !important;
+  background-position: center;
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   min-height: 100vh;
@@ -69,6 +71,11 @@ body {
   letter-spacing: 0.01em;
   font-size: 1.05rem;
 }
+
+html.dark body {
+  background: url("https://pplx-res.cloudinary.com/image/upload/v1747415132/gpt4o_images/p2mycept3df784yys4bm.png") !important;
+  background-size: cover !important;
+  background-position: center !important;}
 
 
 
