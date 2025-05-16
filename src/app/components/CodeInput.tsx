@@ -32,12 +32,11 @@ export default function CodeInput() {
             // Remove any non-alphanumeric characters but preserve case
             setCode(e.target.value.replace(/[^a-zA-Z0-9]/g, ''));
           }}
-        />
-        <button 
+        />        <button 
           type="submit"
-          className="bg-primary hover:bg-primary/80 text-white rounded-r-lg px-3 transition-all duration-200 text-sm"
+          className="bg-primary hover:bg-primary/80 text-white rounded-r-lg px-3 transition-all duration-200 text-sm ml-2"
         >
-          <FaArrowRight size={12} />
+          <FaArrowRight size={7} />
         </button>
       </form>
       {error && <div className="absolute text-xs text-red-500 mt-1">{error}</div>}

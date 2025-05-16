@@ -30,8 +30,7 @@ export default function Home() {
         <form onSubmit={handleCodeSubmit} className="flex flex-col items-center">
           <div className="w-full bg-gradient-to-br from-primary/10 to-secondary/10 border-2 border-[#915858] dark:border-primary rounded-2xl shadow-lg p-6 flex flex-col items-center gap-2">
             <p className="text-secondary text-sm mb-1">Have a code? Enter it here:</p>
-            <div className="flex w-full items-center">
-              <input
+            <div className="flex w-full items-center">              <input
                 type="text"
                 className="flex-1 p-4 rounded-l-xl border-0 bg-white/80 dark:bg-black/40 text-input-text focus:ring-2 focus:ring-primary outline-none transition text-center text-2xl tracking-widest font-mono font-bold shadow-inner placeholder:font-normal placeholder:tracking-normal"
                 placeholder="CODE"
@@ -43,7 +42,7 @@ export default function Home() {
               />
               <button 
                 type="submit"
-                className="bg-primary hover:bg-primary/80 text-white rounded-r-xl px-6 py-4 transition-all duration-200 flex items-center justify-center text-2xl font-bold shadow-md"
+                className="bg-primary hover:bg-primary/80 text-white rounded-r-xl px-6 py-4 transition-all duration-200 flex items-center justify-center text-2xl font-bold shadow-md ml-2"
                 aria-label="Go"
               >
                 <FaArrowRight />
