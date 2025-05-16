@@ -6,7 +6,7 @@
   --primary: #915858;
   --secondary: #64748b;
   --accent: #38bdf8;
-  --card-bg: #eee4e4;
+  --card-bg: #f1ebeb;
   --card-text: #18181b;
   --card-border: #1717183f; 
   --input-bg: #eeeaea;
@@ -59,7 +59,7 @@
 }
 
 body {
-  background: url("https://marketplace.canva.com/EAGEncMdbEM/1/0/1600w/canva-beige-brown-simple-abstract-desktop-wallpaper-pE_Ruap0PiI.jpg");
+  background: #ebebee;
   background-size: cover !important;
   background-position: center;
   color: var(--foreground);
@@ -73,11 +73,11 @@ body {
 }
 
 html.dark body {
-  background: url("https://pplx-res.cloudinary.com/image/upload/v1747415132/gpt4o_images/p2mycept3df784yys4bm.png") !important;
+  background: #0c0b0b;
   background-size: cover !important;
-  background-position: center !important;}
-
-
+  background-position: center !important;
+  backdrop-filter: contrast(0.8) brightness(0.8);
+}
 
 * {
   box-sizing: border-box;
@@ -90,7 +90,7 @@ a {
   transition: color var(--transition);
 }
 a:hover {
-  color: var(--accent);
+  color:  #8a5353;
 }
 
 .container {
