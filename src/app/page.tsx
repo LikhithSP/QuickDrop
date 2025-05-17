@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <div className="fade-in w-full flex flex-col items-center justify-center min-h-[60vh] mt-[-48px]">
       <h1 className="text-4xl sm:text-5xl font-extrabold mb-3 tracking-tight text-center text-foreground">QuickDrop</h1>
-      <p className="mb-8 text-center max-w-xl text-lg text-secondary font-medium">Instantly share files or text with a link or QR code. No login. Minimal, fast, and private.</p>
+      <p className="mb-8 text-center max-w-xl text-lg text-secondary font-medium">Instantly share files or text with a code or QR image. No login. Minimal, fast, and private.</p>
       
       {/* Code input area */}
       <div className="w-full max-w-md mb-10">

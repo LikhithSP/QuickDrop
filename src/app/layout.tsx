@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "QuickDrop",
+  title: "QuickDrop - Share Files & Text Instantly",
   description: "Instantly share files or text with a link or QR code. No login. Minimal, fast, and private.",
 };
 
