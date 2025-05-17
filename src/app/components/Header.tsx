@@ -7,7 +7,7 @@ const ThemeToggle = dynamic(() => import('../ThemeToggle'), { ssr: false });
 
 export default function Header() {
   return (
-    <header className="border-card-border bg-card-bg/90 sticky top-0 z-30 transition-all">
+    <header className="border-card-border bg-card-bg/90 transition-all">
       <nav className="container flex items-center justify-between py-2">
         <Link href="/" className="text-xl font-bold tracking-tight text-primary hover:text-accent transition-colors flex items-center gap-2">
           <span className="inline-block align-middle" style={{ transform: 'rotate(-25deg) translateY(-2px)' }}>

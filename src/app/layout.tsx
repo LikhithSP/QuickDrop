@@ -31,6 +31,11 @@ export default function RootLayout({
         <script src="/theme.js" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}>
+        <div className="glassy-bg-3d" aria-hidden="true">
+          <div className="glassy-blob glassy-blob-1" />
+          <div className="glassy-blob glassy-blob-2" />
+          <div className="glassy-blob glassy-blob-3" />
+        </div>
         <Header />
         <main className="container fade-in min-h-[80vh] flex flex-col justify-center items-center">
           {children}
