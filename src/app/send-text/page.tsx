@@ -56,11 +56,10 @@ export default function SendTextPage() {
     }
     
     setCode(generatedCode);
-    
-    // Still generate URL for QR code and direct link
-    const url = `/text/${nickname || id}`;
-    setLink(url);
-    QRCode.toDataURL(SITE_ORIGIN + url, (err, url) => setQr(url));
+    // Generate QR code for /code/{code} (not direct text link)
+    const codeUrl = `/code/${generatedCode}`;
+    setLink(codeUrl);
+    QRCode.toDataURL(SITE_ORIGIN + codeUrl, (err, url) => setQr(url));
     setUploading(false);
   };
 
@@ -111,16 +110,7 @@ export default function SendTextPage() {
                 <FaCopy size={14} /> Copy Code
               </button>
             </div>
-            
-            <div className="mt-6">
-              <div className="mb-2 text-secondary font-medium">Or share this link:</div>
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <input className="border rounded-lg p-2 w-60 bg-input-bg text-input-text border-input-border text-sm" value={SITE_ORIGIN + link} readOnly />
-                <button onClick={() => navigator.clipboard.writeText(SITE_ORIGIN + link)} className="p-2 text-secondary hover:text-primary transition"><FaCopy /></button>
-                <a href={`https://wa.me/?text=${encodeURIComponent(SITE_ORIGIN + link)}`} target="_blank" rel="noopener noreferrer" className="p-2 text-green-600 hover:scale-110 transition"><FaWhatsapp /></a>
-              </div>
-              {qr && <img src={qr} alt="QR Code" className="mx-auto mt-2 w-32 h-32 rounded-lg shadow bg-white p-1" />}
-            </div>
+            {qr && <img src={qr} alt="QR Code" className="mx-auto mt-2 w-32 h-32 rounded-lg shadow bg-white p-1" />}
           </div>
         )}
       </div>
