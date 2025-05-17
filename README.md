@@ -1,11 +1,9 @@
+<h1> <img src="public/favicon.svg" width="35" alt="QuickDrop Logo" /> QuickDrop</h1>
 <p align="center">
-  <img src="public/favicon.svg" width="80" alt="QuickDrop Logo" />
-</p>
-<h1 align="center">QuickDrop</h1>
-<p align="center">
+  <img src="./quickdrop-demo.png">
   <b>Instant, private, and hassle-free file & text sharing.</b><br>
-  Share files or notes with a link or QR code. No login. Minimal, fast, and secure.<br>
-  <a href="https://quickdropx.vercel.app" target="_blank">quickdrop.vercel.app</a>
+  Share files or notes with a link or QR code. No login. Minimal, fast, and secure.  <a href="https://quickdropx.vercel.app" target="_blank">Visit Now</a> <br>
+
 </p>
 
 ---
