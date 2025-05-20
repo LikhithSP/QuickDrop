@@ -2,7 +2,7 @@
 <p align="center">
   <img src="./quickdrop-demo.png">
   <b>Instant, private, and hassle-free file & text sharing.</b><br>
-  Share files or notes with a link or QR code. No login. Minimal, fast, and secure.  <a href="https://quickdropx.vercel.app" target="_blank">Visit Now</a> <br>
+  Share files or notes with a code or QR Image. No login. Minimal, fast, and secure.  <a href="https://quickdropx.vercel.app" target="_blank">Visit Now</a> <br>
 
 </p>
 
