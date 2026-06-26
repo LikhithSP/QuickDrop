@@ -4,7 +4,7 @@
   <img src="./quickdrop-demo1.png" alt="QuickDrop Screen Preview" />
   <br><br>
   <b>Instant, open source, and hassle-free file & text sharing.</b>
-  <br><br>
+  <br>
   Share multiple files or notes instantly using 4-digit codes or QR images. No login required. Minimalist, blazing fast, and designed with premium dark/light themes. <a href="https://quickdropx.vercel.app" target="_blank">Visit Now</a>
 </div>
 
