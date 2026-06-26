@@ -8,7 +8,7 @@ const ThemeToggle = dynamic(() => import('../ThemeToggle'), { ssr: false });
 export default function Header() {
   return (
     <header className="border-card-border bg-card-bg/90 transition-all">
-      <nav className="w-full max-w-2xl mx-auto flex items-center justify-between py-3 px-4 sm:px-6">
+      <nav className="w-full max-w-2xl mx-auto flex items-center justify-between pt-6 pb-3 px-4 sm:px-6">
         <a href="/" className="text-xl font-bold tracking-tight text-primary hover:text-accent transition-colors flex items-center gap-2">
           <span className="inline-block align-middle" style={{ transform: 'rotate(-25deg) translateY(-2px)' }}>
             {/* Paper rocket (paper plane) SVG icon, angled to look like it's flying */}

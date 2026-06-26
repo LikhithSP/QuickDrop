@@ -1,45 +1,81 @@
-<h1> <img src="public/favicon.svg" width="35" alt="QuickDrop Logo" /> QuickDrop</h1>
-<p align="center">
-  <img src="./quickdrop-demo.png">
-  <b>Instant, private, and hassle-free file & text sharing.</b><br>
-  Share files or notes with a code or QR Image. No login. Minimal, fast, and secure.  <a href="https://quickdropx.vercel.app" target="_blank">Visit Now</a> <br>
+# <img src="public/favicon.svg" width="35" alt="QuickDrop Logo" style="vertical-align: middle;" /> QuickDrop
 
+**Instant, open source, and hassle-free file & text sharing.**
+
+<p align="center">
+  <img src="./quickdrop-demo.png" alt="QuickDrop Screen Preview" />
+  <img src="./quickdrop-demo1.png" alt="QuickDrop Screen Preview" />
 </p>
 
+Share multiple files or notes instantly using 4-digit codes or QR images. No login required. Minimalist, blazing fast, and designed with premium dark/light themes. <a href="https://quickdropx.vercel.app" target="_blank">Visit Now</a> <br>
+
+
+
+
+## ⚡ Key Features
+
+* **Multi-File Sharing:** Select and upload multiple files simultaneously (up to 50MB total). Interactively review the selected files list and remove individual items before sharing.
+* **Inline Receiving Flow:** Paste a 4-digit code and fetch files or text drops directly on the Home page. No page reloads, double redirects, or intermediate loading screens.
+* **Direct File Downloads:** Programmatic download helper converts files to Blobs to bypass CORS and force direct savings to the computer (rather than opening images/PDFs in new browser tabs).
+* **Batch Downloader ("Download All"):** Download all received files in one click. Sequentially fetches and saves each file with automated browser delays.
+* **Auto-Copy Clipboard Integration:** Automatically copies retrieved text to the clipboard on load with a temporary theme-matching copied notice.
+* **Open Source & Privacy-focused:** Zero accounts, no tracking, and fully custom expiration intervals (from 1 hour up to 7 days).
+* **Modern Adaptive Theme:** Beautifully styled dark/light themes featuring glassmorphism, smooth animations, and optimized color variables for both modes.
+* **Mobile-First Layout:** A custom horizontal navigation tab bar designed to fit perfectly on small screens without vertical stacking.
+
 ---
-
-## 🚀 Features
-
-- **File Sharing:** Upload files up to 50MB and share via a link or QR code
-- **Text Sharing:** Share notes, code, or any text with customizable expiration
-- **Short Codes:** Generate 4-character codes for easy access
-- **No Login Required:** Share instantly, no sign-up or account needed
-- **QR Codes:** Instantly generate QR codes for mobile sharing
-- **Easy Sharing:** Copy links or share directly to WhatsApp
-- **Expiration Options:** Choose 24-hour or 7-day link expiration
-- **Modern UI:** Clean, responsive, and mobile-friendly design
-
----
-
 
 ## 🧰 Tech Stack
 
-- [Next.js](https://nextjs.org/)
-- [React](https://reactjs.org/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Supabase](https://supabase.io/)
-- [Tailwind CSS](https://tailwindcss.com/)
+* **Frontend Framework:** [Next.js 15](https://nextjs.org/) (App Router)
+* **Library:** [React 19](https://reactjs.org/) & [TypeScript](https://www.typescriptlang.org/)
+* **Database & Storage:** [Supabase](https://supabase.com/) (PostgreSQL & Storage Buckets)
+* **Styling:** [Tailwind CSS v4](https://tailwindcss.com/) & Vanilla CSS variables
+* **Icons:** [React Icons](https://react-icons.github.io/react-icons/)
+* **QR Generation:** [node-qrcode](https://github.com/soldair/node-qrcode)
 
 ---
 
-## 📦 Deployed on Vercel
+## 💻 Getting Started
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
+### Prerequisites
 
-Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* Node.js (v18 or higher)
+* npm, yarn, or pnpm
+* A Supabase account with Storage and Database tables configured.
+
+### Local Development
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/LikhithSP/QuickDrop.git
+   cd QuickDrop
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Configure Environment Variables:**
+   Create a `.env` file in the root directory and add your Supabase credentials:
+   ```env
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
+
+4. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-<p align="center">
-  <b>Made with ❤️ by <a href="https://github.com/LikhithSP" target="_blank">LikhithSP</a></b>
-</p>
+## 📦 Deployment
+
+This project is configured for deployment on the [Vercel Platform](https://vercel.com/):
+
+
+
+
