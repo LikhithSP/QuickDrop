@@ -22,20 +22,43 @@ if (!supabaseUrl || !supabaseAnonKey) {
   }
 }
 
+// Dummy storage to prevent localStorage errors on the server in Next.js
+const dummyStorage = {
+  getItem: () => null,
+  setItem: () => {},
+  removeItem: () => {}
+};
+
 export const supabase = createClient(
   supabaseUrl || 'https://placeholder-url.supabase.co',
-  supabaseAnonKey || 'placeholder-key'
+  supabaseAnonKey || 'placeholder-key',
+  {
+    auth: {
+      storage: typeof window !== 'undefined' ? window.localStorage : dummyStorage,
+      persistSession: true,
+    }
+  }
 );
+
+export const getExpiryDate = (expiry: string) => {
+  const now = Date.now();
+  switch (expiry) {
+    case '1h': return new Date(now + 1 * 60 * 60 * 1000).toISOString();
+    case '2h': return new Date(now + 2 * 60 * 60 * 1000).toISOString();
+    case '7h': return new Date(now + 7 * 60 * 60 * 1000).toISOString();
+    case '1d': return new Date(now + 24 * 60 * 60 * 1000).toISOString();
+    case '7d': return new Date(now + 7 * 24 * 60 * 60 * 1000).toISOString();
+    default: return new Date(now + 24 * 60 * 60 * 1000).toISOString(); // fallback to 1d
+  }
+};
 
 // Helper function to generate a random 4-character code
 export const generateCode = async (resourceType: 'text' | 'file', resourceId: string, expiry: string) => {
   // Generate expiry date
-  const expiryDate = expiry === "24h" 
-    ? new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString() 
-    : new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
+  const expiryDate = getExpiryDate(expiry);
 
-  // Generate a random code (4 characters with letters and numbers)
-  const characters = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789';
+  // Generate a random code (4 digits)
+  const characters = '0123456789';
   let code = '';
   for (let i = 0; i < 4; i++) {
     code += characters.charAt(Math.floor(Math.random() * characters.length));

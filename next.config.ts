@@ -1,5 +1,19 @@
 import type { NextConfig } from "next";
 
+// Fix for Node 25 experimental localStorage breaking Next.js SSR dev overlay
+if (typeof globalThis !== 'undefined') {
+  if (globalThis.localStorage && typeof globalThis.localStorage.getItem !== 'function') {
+    (globalThis as any).localStorage = {
+      getItem: () => null,
+      setItem: () => {},
+      removeItem: () => {},
+      clear: () => {},
+      key: () => null,
+      length: 0
+    };
+  }
+}
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {

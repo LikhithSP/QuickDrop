@@ -30,7 +30,7 @@ export default function CodeInput() {
           maxLength={4}
           value={code}          onChange={(e) => {
             // Remove any non-alphanumeric characters but preserve case
-            setCode(e.target.value.replace(/[^a-zA-Z0-9]/g, ''));
+            setCode(e.target.value.replace(/[^0-9]/g, ''));
           }}
         />        <button 
           type="submit"

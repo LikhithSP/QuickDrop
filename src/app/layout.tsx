@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "QuickDrop - Share Files & Text Instantly",
-  description: "Instantly share files or text with a link or QR code. No login. Minimal, fast, and private.",
+  description: "Instantly share files or text with a link or QR code. No login. Minimal, fast, and open source.",
 };
 
 export default function RootLayout({
@@ -30,17 +30,18 @@ export default function RootLayout({
         <meta name="theme-color" content="#2563eb" />
         <script src="/theme.js" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground flex flex-col min-h-screen`} suppressHydrationWarning>
         <div className="glassy-bg-3d" aria-hidden="true">
           <div className="glassy-blob glassy-blob-1" />
           <div className="glassy-blob glassy-blob-2" />
           <div className="glassy-blob glassy-blob-3" />
         </div>
+
         <Header />
-        <main className="container fade-in min-h-[80vh] flex flex-col justify-center items-center">
+        <main className="container fade-in flex-grow flex flex-col justify-center items-center w-full">
           {children}
         </main>
-        <footer className="w-full text-center py-6 text-sm text-secondary mt-8 glassy-form  border-card-border/30 backdrop-blur-xl bg-card-bg/60 flex flex-col items-center gap-2">
+        <footer className="w-full text-center py-6 text-sm text-secondary glassy-form  border-card-border/30 backdrop-blur-xl bg-card-bg/60 flex flex-col items-center gap-2">
           <span>&copy; {new Date().getFullYear()} QuickDrop. All rights reserved.</span>
           <a
             href="https://github.com/LikhithSP"
